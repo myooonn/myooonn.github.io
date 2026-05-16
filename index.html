@@ -209,6 +209,7 @@
     body[data-theme="light"] .result-box { background: rgba(0,0,0,0.02); }
 
     .result-grid { display: grid; gap: 10px; }
+    .result-grid.one   { grid-template-columns: 1fr; }
     .result-grid.two   { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .result-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .result-grid.four  { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -418,15 +419,15 @@
           </div>
         </div>
 
-          <div class="result-box">
-            <div class="result-grid two">
-              <div class="result-item main">
-                <div class="label">変換後感度</div>
-                <div class="value"><span id="fpsSensOut">1.111</span><small id="fpsSensUnit"></small></div>
-              </div>
+        <div class="result-box">
+          <div class="result-grid one">
+            <div class="result-item main">
+              <div class="label">変換後感度</div>
+              <div class="value"><span id="fpsSensOut">1.111</span><small id="fpsSensUnit"></small></div>
             </div>
-            <div class="footnote" id="fpsNote">yaw比で360°距離を合わせる参考値です（FOV/スコープ倍率/ゲーム内設定でズレます）。</div>
           </div>
+          <div class="footnote" id="fpsNote">yaw比で360°距離を合わせる参考値です（FOV/スコープ倍率/ゲーム内設定でズレます）。</div>
+        </div>
 
         <div class="actions">
           <button class="btn" id="fpsResetBtn" type="button">↺ リセット</button>
@@ -492,7 +493,7 @@
         name: 'Apex Legends',
         yaw:  0.022,
         unit: '',
-        note: 'Apexはyaw≈0.022（Source系）。FOVが違うため実戦では微調整推奨。',
+        note: 'Apexはyaw≈0.022（Source系）。この方式だとCS2と数値が同じになります（FOVは体感差）。',
       },
       ow2: {
         name: 'Overwatch 2',
