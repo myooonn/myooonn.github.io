@@ -418,20 +418,15 @@
           </div>
         </div>
 
-        <div class="result-box">
-          <div class="result-grid two">
-            <div class="result-item main">
-              <div class="label">変換後感度</div>
-              <div class="value"><span id="fpsSensOut">1.111</span><small id="fpsSensUnit"></small></div>
+          <div class="result-box">
+            <div class="result-grid two">
+              <div class="result-item main">
+                <div class="label">変換後感度</div>
+                <div class="value"><span id="fpsSensOut">1.111</span><small id="fpsSensUnit"></small></div>
+              </div>
             </div>
-            <div class="result-item">
-              <!-- [バグ修正] 「共通 cm/360」であることを明記 -->
-              <div class="label">共通 cm / 360°</div>
-              <div class="value"><span id="fpsCm360Out">46.2</span><small>cm</small></div>
-            </div>
+            <div class="footnote" id="fpsNote">yaw比で360°距離を合わせる参考値です（FOV/スコープ倍率/ゲーム内設定でズレます）。</div>
           </div>
-          <div class="footnote" id="fpsNote">yaw比で360°距離を合わせる参考値です（FOV/スコープ倍率/ゲーム内設定でズレます）。</div>
-        </div>
 
         <div class="actions">
           <button class="btn" id="fpsResetBtn" type="button">↺ リセット</button>
@@ -472,7 +467,6 @@
     const targetGame   = document.getElementById('targetGame');
     const fpsSensOut   = document.getElementById('fpsSensOut');
     const fpsSensUnit  = document.getElementById('fpsSensUnit');
-    const fpsCm360Out  = document.getElementById('fpsCm360Out');
     const fpsNote      = document.getElementById('fpsNote');
 
     // ===== ゲームデータ（yaw比での参考換算）=====
@@ -593,14 +587,9 @@
       const factor    = VALO_YAW / game.yaw;
       const converted = sens * factor;
 
-      // cm/360 はVALOもターゲットも変換が正しければ同じ値になる
-      const cm360 = (valid(dpi) && valid(sens))
-        ? (2.54 * 360) / (dpi * sens * VALO_YAW) : NaN;
-
       fpsSensUnit.textContent  = game.unit;
       fpsNote.textContent      = game.note;
       showVal(fpsSensOut,  converted, 4);
-      showVal(fpsCm360Out, cm360,     1);
     }
 
     // ===== タブ切替 =====
@@ -678,7 +667,6 @@
         `VALOSENS - FPS変換 (VALORANT → ${game})`,
         `VALORANT感度: ${sourceSens.value}  DPI: ${sourceDpi.value}`,
         `変換後感度 (${game}): ${fpsSensOut.textContent}`,
-        `共通 cm/360: ${fpsCm360Out.textContent} cm`,
       ].join('\n'));
       flashCopy(document.getElementById('fpsCopyBtn'), '▣ コピー');
     });
