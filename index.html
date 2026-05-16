@@ -54,23 +54,6 @@
     .app { min-height: 100vh; padding: clamp(16px, 3vw, 40px); }
     .shell { width: 100%; max-width: 1320px; margin: 0 auto; }
 
-    /* ===== 広告枠（プレースホルダー）===== */
-    .ad-slot {
-      border: 1px dashed var(--border);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.01);
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 10px 14px;
-      margin: 14px 0 18px;
-      min-height: 90px;
-    }
-    body[data-theme="light"] .ad-slot { background: rgba(0,0,0,0.02); }
-    .ad-slot small { font-size: 12px; letter-spacing: 0.10em; text-transform: uppercase; }
-
     /* ===== ヘッダー ===== */
     .header {
       display: flex;
@@ -325,11 +308,6 @@
         <div class="header-actions">
           <button class="chip" id="themeToggle" type="button">🌙 テーマ</button>
         </div>
-      </div>
-
-      <!-- 広告枠（例：AdSense/他の広告タグをここに貼る） -->
-      <div class="ad-slot" id="adTop" aria-label="広告枠">
-        <small>AD SPACE</small>
       </div>
 
       <div class="tabs" role="tablist">
